@@ -1,6 +1,6 @@
 .links{
   display: flex;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   padding: 5px 10px;
 }
@@ -22,14 +22,18 @@
   height: calc(100vh - 100px);
   display: none;
   flex-direction: column;
-  gap: 10px;
+  gap: 50px;
   justify-content: center;
   align-items: center;
-  background-color: rgb(52, 52, 171);
+  background: var(--bg);
 }
 
 .menu{
   display: none;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border: none;
 }
 
 @media(max-width:768px){
@@ -39,5 +43,6 @@
   }
   .mobileLinks{
     display: flex;
+    transition: 0.3s;
   }
 }

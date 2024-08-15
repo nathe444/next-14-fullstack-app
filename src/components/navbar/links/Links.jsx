@@ -45,12 +45,18 @@ const Links = () => {
         }}
         className={styles.menu}
       >
-        Menu
+        <img src="./menu.png" alt="" className={styles.menu} />
       </button>
       {open && (
         <div className={styles.mobileLinks}>
           {links.map((link) => (
-            <Navlink item={link} key={link.name} />
+            <Navlink
+              item={link}
+              key={link.name}
+              onClick={() => {
+                setOpen(false);
+              }}
+            />
           ))}
         </div>
       )}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./navlink.module.css";
 import { usePathname } from "next/navigation";
-const Navlink = ({ item }) => {
+const Navlink = ({ item, onClick }) => {
   let pathName = usePathname();
   return (
     <Link
@@ -9,6 +9,7 @@ const Navlink = ({ item }) => {
         pathName === item.path ? styles.active : ""
       }`}
       href={item.path}
+      onClick={onClick}
     >
       {item.name}
     </Link>
