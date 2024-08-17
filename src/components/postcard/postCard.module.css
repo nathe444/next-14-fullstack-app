@@ -16,6 +16,7 @@
   position: relative;
 }
 
+
 .img{
   object-fit: contain;
 }
@@ -37,8 +38,19 @@
   margin-bottom: 20px;
   font-weight: 300;
   color: gray;
+  
 }
 
 .link{
   text-decoration: underline;
+}
+
+@media(max-width: 768px){
+  .imgContainer{
+    height: 150px;
+  }
+
+  .desc{
+    font-size: 12px;
+  }
 }

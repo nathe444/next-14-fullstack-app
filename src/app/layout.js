@@ -6,7 +6,10 @@ import Footer from '@/components/footer/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Byte Brilliance',
+  title: {
+    default: ' Home Page',
+    template: '%s | Byte Brilliance',
+  },
   description: 'A Software Company',
 }
 

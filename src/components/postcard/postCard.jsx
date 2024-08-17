@@ -3,24 +3,23 @@ import styles from "./postCard.module.css";
 import Link from "next/link";
 
 const PostCard = ({ post }) => {
-  let date = new Date();
+  console.log(post);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.imgContainer}>
-          <Image src="/web.png" alt="" fill className={styles.img} />
-        </div>
-        <span className={styles.date}>{date.now}</span>
+        {post.img && (
+          <div className={styles.imgContainer}>
+            <Image src={post.img} alt="" fill className={styles.img} />
+          </div>
+        )}
+        <span className={styles.date}>
+          {post.createdAt?.toString().slice(4, 16)}
+        </span>
       </div>
       <div className={styles.bottom}>
-        <h1 className={styles.title}>title</h1>
-        <p className={styles.desc}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
-          blanditiis ut quae voluptas, quidem ducimus iste, facilis esse sed
-          perferendis laborum accusantium, obcaecati fugiat consectetur nulla!
-          Blanditiis animi quibusdam cupiditate!
-        </p>
-        <Link className={styles.link} href={`#`}>
+        <h1 className={styles.title}>{post.title}</h1>
+        <p className={styles.desc}>{post.desc}</p>
+        <Link className={styles.link} href={`/blog/${post.slug}`}>
           READ MORE
         </Link>
       </div>

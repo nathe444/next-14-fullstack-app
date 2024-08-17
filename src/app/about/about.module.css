@@ -75,4 +75,11 @@
     flex-direction: column-reverse;
     gap: 50px;
   }
+
+  .statsText{
+    font-size: 11px;
+  }
+  .statsNumber{
+    font-size: 24px;
+  }
 }

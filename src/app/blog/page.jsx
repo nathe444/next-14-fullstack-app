@@ -1,20 +1,32 @@
 import PostCard from "@/components/postCard/postCard";
 import styles from "./blogs.module.css";
-const BlogPage = () => {
+import { usePathname, useSearchParams } from "next/navigation";
+import { connectToDb } from "@/lib/connection";
+import { getPosts } from "@/lib/data";
+// const getPosts = async () => {
+//   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+//     cache: "no-store",
+//   });
+//   const post = await response.json();
+//   return post;
+// };
+
+export const metadata = {
+  title: "Blog Page",
+  description: "A Software Company",
+};
+
+const BlogPage = async () => {
+  const posts = await getPosts();
   return (
     <div className={styles.container}>
-      <div className={styles.post}>
-        <PostCard />
-      </div>
-      <div className={styles.post}>
-        <PostCard />
-      </div>
-      <div className={styles.post}>
-        <PostCard />
-      </div>
-      <div className={styles.post}>
-        <PostCard />
-      </div>
+      {posts.map((post) => {
+        return (
+          <div className={styles.post} key={post.id}>
+            <PostCard post={post} />
+          </div>
+        );
+      })}
     </div>
   );
 };
