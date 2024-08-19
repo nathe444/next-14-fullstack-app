@@ -2,13 +2,32 @@ import Image from "next/image";
 import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/postUser";
 import { Suspense } from "react";
-import { getPost } from "@/lib/data";
+// import { getPost } from "@/lib/data";
+// const post = await getPost(slug);
+
+const getPost = async (slug) => {
+  try {
+    const post = await fetch(`http://localhost:3000/api/blog/${slug}`);
+    console.log(post);
+    return post.json();
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+};
+
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+  const post = await getPost(slug);
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
 
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
-
   const post = await getPost(slug);
-
   return (
     <div className={styles.container}>
       {post.img && (

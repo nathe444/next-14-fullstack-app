@@ -1,26 +1,27 @@
 "use client";
+import { auth } from "@/lib/auth";
 import styles from "./links.module.css";
 import Navlink from "./navlink/Navlink";
 import { useState } from "react";
+import { handleLogOut } from "@/lib/action";
 
-const Links = () => {
-  let links = [
-    { name: "Homepage", path: "/" },
-    {
-      name: "About",
-      path: "/about",
-    },
-    {
-      name: "Contact",
-      path: "/contact",
-    },
-    {
-      name: "Blog",
-      path: "/blog",
-    },
-  ];
+let links = [
+  { name: "Homepage", path: "/" },
+  {
+    name: "About",
+    path: "/about",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
+  {
+    name: "Blog",
+    path: "/blog",
+  },
+];
 
-  const session = true;
+const Links = async ({ session }) => {
   const isAdmin = true;
   const [open, setOpen] = useState(false);
 
@@ -30,10 +31,15 @@ const Links = () => {
         {links.map((link) => (
           <Navlink item={link} key={link.name} />
         ))}
-        {session ? (
+        {session?.user ? (
           <>
-            {isAdmin && <Navlink item={{ name: "Admin", path: "/admin" }} />}
-            <button className={styles.logout}>Logout</button>
+            {session.user?.isAdmin && (
+              <Navlink item={{ name: "Admin", path: "/admin" }} />
+            )}
+
+            <form action={handleLogOut}>
+              <button className={styles.logout}>Logout</button>
+            </form>
           </>
         ) : (
           <Navlink item={{ name: "Login", path: "/login" }} />
